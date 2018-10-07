@@ -13,11 +13,18 @@
         <span class="windowTitle">Shutdown Timer</span>
     </div>
     <div id="mainPage" class="pageContent">
-        Main Page
+        <button onclick="openPage('timerPage'); shutdownNow();">Shutdown Now</button>
+        <button onclick="openPage('timerPage'); shutdownOneHour();">Shutdown +1 Hours</button>
     </div>
-    <div id="settingsPage" class="pageContent">
+    <div id="timerPage" class="pageContent clearfix">
+        Shutdown Now/1 Hour Ago
+        <button onclick="openPage('mainPage'); shutdownCancel();">Cancel</button>
+    </div>
+    <div id="settingsPage" class="pageContent clearfix">
         <span class="backPage" onclick="openPage('mainPage')"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
-        Settings Page
+        <div id="settingsPageContent">
+            Settings
+        </div>
     </div>
     <div class="footer clearfix">
         <span onclick="openPage('settingsPage')" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
@@ -44,6 +51,24 @@
     // Show the specific tab content
     document.getElementById(pageName).style.display = "block";
     }
+
+    var exec = require('child_process').exec;
+
+    function shutdownNow(callback){
+        exec('shutdown now', function(error, stdout, stderr){ callback(stdout); });
+    }
+
+    function shutdownOneHour(callback){
+        exec('shutdown -h +60', function(error, stdout, stderr){ callback(stdout); });
+    }
+
+    function shutdownCancel(callback){
+        exec('shutdown -c', function(error, stdout, stderr){ callback(stdout); });
+    }
+
+    shutdown(function(output){
+        console.log(output);
+    });
     </script>
 </body>
 </html>

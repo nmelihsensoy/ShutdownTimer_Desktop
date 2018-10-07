@@ -66,7 +66,7 @@ body{
 
 .backPage{
     color: #757575;
-    font-size: 30px;
+    font-size: 40px;
     float: left;
     margin-left: 10px;
     padding: 0;
@@ -81,8 +81,42 @@ body{
     display: block;
 }
 
+#mainPage{
+    padding: 20px;
+}
+
+button{
+    background-color: #B0BEC5;
+    border:1px solid #757575;
+    outline: none;
+    padding: 20px;
+    color: #000;
+    font-size: 18px;
+    -webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+    cursor: pointer;
+}
+
+button:active{
+    background-color: #34495e;
+}
+
+#timerPage{
+    display: none;
+    padding-top: 20px;
+}
+
 #settingsPage{
     display: none;
+    padding-top: 20px;
+}
+
+#settingsPageContent{
+    background-color: #fff;
+    display: inline-block;
+    width: 720px;
+    height: 300px;
 }
 
 .footer{
