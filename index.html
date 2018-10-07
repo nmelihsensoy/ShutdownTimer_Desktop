@@ -4,15 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="header clearfix">
-        <span>X</span>
+        <span class="windowsButton" onclick="closeWindow();"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+        <span class="windowTitle">Shutdown Timer</span>
     </div>
-    <div class="footer">
-        fsfdsa
+    <div id="mainPage" class="pageContent">
+        Main Page
     </div>
+    <div id="settingsPage" class="pageContent">
+        <span class="backPage" onclick="openPage('mainPage')"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+        Settings Page
+    </div>
+    <div class="footer clearfix">
+        <span onclick="openPage('settingsPage')" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
+            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+            <i class="fa fa-cog fa-stack-1x"></i>
+          </span>
+    </div>
+    <script>
+    const remote = require('electron').remote;
+
+    function closeWindow(){
+        var window = remote.getCurrentWindow();
+        window.close();
+    }
+
+    function openPage(pageName) {
+    // Hide all elements with class="pageContent" by default
+    var i, pageContent, tablinks;
+    pageContent = document.getElementsByClassName("pageContent");
+    for (i = 0; i < pageContent.length; i++) {
+        pageContent[i].style.display = "none";
+    }
+
+    // Show the specific tab content
+    document.getElementById(pageName).style.display = "block";
+    }
+    </script>
 </body>
 </html>
