@@ -1,13 +1,14 @@
 html{
     margin: 0;
     padding: 0;   
-    width: 800px;
-    height: 600px;
     border-radius: 200px;
+    overflow: hidden;
    }
    
    
 body{
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
     color: white;
     position: absolute;
     top: 0px;   
@@ -56,12 +57,18 @@ body{
     color: #ef5350;
 }
 
+#minimizeWindow:hover{
+    color: #f1c40f !important;
+}
+
 .windowTitle{
     float: left;
     display: inline-block;
     line-height: 50px;
     font-size: 20px;
     margin-left: 10px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.68);
+    letter-spacing: -1px;
 }
 
 .backPage{
@@ -83,6 +90,8 @@ body{
 
 #mainPage{
     padding: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 button{
@@ -129,8 +138,10 @@ button:active{
 }
 
 .settingsButton{
-    float: right;
     display: inline-block;
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
     margin-right: 10px;
     margin-bottom: 10px;
     color: #757575;

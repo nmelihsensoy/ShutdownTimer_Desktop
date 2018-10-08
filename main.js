@@ -5,12 +5,55 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+    const {ipcMain} = require('electron')
+    ipcMain.on('resize', function (e, x, y) { mainWindow.setSize(x, y); });
+
+    function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600, transparent: true, resizable: false, useContentSize: true, maximizable: false, frame: false, titleBarStyle: 'hidden'})
+  mainWindow = new BrowserWindow({
+    width: 500, 
+    height: 600, 
+    transparent: true, 
+    resizable: false, 
+    useContentSize: true, 
+    maximizable: false, 
+    frame: false, 
+    titleBarStyle: 'hidden',
+    icon: __dirname + '/icons/ic_main.png' 
+})
+var io  = require('socket.io').listen(5335);
+
+var http = require('http');
+var url = require('url');
+
+
+
+io.sockets.on('connection', function (socket) {
+	socket.on('subscribe', function (data) {
+		console.log('Subscribing to '+ data);
+	});
+
+	socket.on('testElectron', function (data) {
+		console.log("asdasd");
+  });
+});
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  var q = url.parse(req.url, true).query;
+  var txt = q.year + " " + q.month;
+  if(q.year != null & q.month != null){
+    io.sockets.emit('deneme', txt);
+    res.end(txt);
+  }
+  
+}).listen(8080);
+
 
   // and load the index.html of the app.
-  mainWindow.loadFile('app/index.html')
+  mainWindow.loadFile('app/index.html', {
+    rendererSideName : "http"
+  } );
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

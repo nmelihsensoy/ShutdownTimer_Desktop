@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="header clearfix">
         <span class="windowsButton" onclick="closeWindow();"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+        <span id="minimizeWindow" class="windowsButton" onclick="minimizeWindow();"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
         <span class="windowTitle">Shutdown Timer</span>
     </div>
     <div id="mainPage" class="pageContent">
+        <p id="text" class="text">sdads</p>
         <button onclick="openPage('timerPage'); shutdownNow();">Shutdown Now</button>
         <button onclick="openPage('timerPage'); shutdownOneHour();">Shutdown +1 Hours</button>
+        <span onclick="openPage('settingsPage');" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
+            <i class="fa fa-circle fa-stack-2x icon-background"></i>
+            <i class="fa fa-cog fa-stack-1x"></i>
+        </span>
     </div>
     <div id="timerPage" class="pageContent clearfix">
         Shutdown Now/1 Hour Ago
@@ -27,48 +34,9 @@
         </div>
     </div>
     <div class="footer clearfix">
-        <span onclick="openPage('settingsPage')" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
-            <i class="fa fa-circle fa-stack-2x icon-background"></i>
-            <i class="fa fa-cog fa-stack-1x"></i>
-          </span>
+        
     </div>
-    <script>
-    const remote = require('electron').remote;
-
-    function closeWindow(){
-        var window = remote.getCurrentWindow();
-        window.close();
-    }
-
-    function openPage(pageName) {
-    // Hide all elements with class="pageContent" by default
-    var i, pageContent, tablinks;
-    pageContent = document.getElementsByClassName("pageContent");
-    for (i = 0; i < pageContent.length; i++) {
-        pageContent[i].style.display = "none";
-    }
-
-    // Show the specific tab content
-    document.getElementById(pageName).style.display = "block";
-    }
-
-    var exec = require('child_process').exec;
-
-    function shutdownNow(callback){
-        exec('shutdown now', function(error, stdout, stderr){ callback(stdout); });
-    }
-
-    function shutdownOneHour(callback){
-        exec('shutdown -h +60', function(error, stdout, stderr){ callback(stdout); });
-    }
-
-    function shutdownCancel(callback){
-        exec('shutdown -c', function(error, stdout, stderr){ callback(stdout); });
-    }
-
-    shutdown(function(output){
-        console.log(output);
-    });
-    </script>
+    <script src="socket.io.slim.js"></script>
+    <script src="../renderer.js"></script>
 </body>
 </html>
