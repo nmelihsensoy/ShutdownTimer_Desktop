@@ -28,9 +28,14 @@
         <button onclick="openPage('mainPage'); shutdownCancel();">Cancel</button>
     </div>
     <div id="settingsPage" class="pageContent clearfix">
-        <span class="backPage" onclick="openPage('mainPage')"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+        <div class="pageTop clearfix">
+            <span class="backPage" onclick="openPage('mainPage')"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+            <span class="pageTitle">Settings</span>
+        </div>
         <div id="settingsPageContent">
-            Settings
+            Web Server: <input type="checkbox" id="webServerToggle" onclick="toggleWebServer()"><br>
+            Web Server Port: <input type="text" id="webServerPort" name="webServerPort" onchange="webServerPortListener(this.value)">
+            <p>You must restart to apply these changes</p>
         </div>
     </div>
     <div class="footer clearfix">

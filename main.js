@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 
+const Store = require('electron-store');
+const store = new Store();
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -25,8 +28,7 @@ var io  = require('socket.io').listen(5335);
 
 var http = require('http');
 var url = require('url');
-
-
+fs = require('fs');
 
 io.sockets.on('connection', function (socket) {
 	socket.on('subscribe', function (data) {
@@ -38,16 +40,33 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  var q = url.parse(req.url, true).query;
-  var txt = q.year + " " + q.month;
-  if(q.year != null & q.month != null){
-    io.sockets.emit('deneme', txt);
-    res.end(txt);
-  }
-  
-}).listen(8080);
+console.log(store.get('web_server'));
+
+var web_server_port;
+if(store.has('web_server_port')){
+  web_server_port = store.get('web_server_port');
+}else{
+  web_server_port = '8080';
+  store.set('web_server_port', );
+}
+
+if(store.get('web_server') == 'true'){
+  fs.readFile('app/server.html', function (err, html) {
+    if (err) {
+        throw err; 
+    }       
+    http.createServer(function (req, res) {
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(html);
+      var q = url.parse(req.url, true).query;
+      var txt = q.year + " " + q.month;
+      if(q.year != null & q.month != null){
+        io.sockets.emit('deneme', txt);
+      }
+      res.end();
+    }).listen(web_server_port);
+  });
+}
 
 
   // and load the index.html of the app.

@@ -71,6 +71,11 @@ body{
     letter-spacing: -1px;
 }
 
+.pageTop{
+    background-color: #ef5350;
+    line-height: 40px;
+}
+
 .backPage{
     color: #757575;
     font-size: 40px;
@@ -82,6 +87,13 @@ body{
 	-webkit-user-drag: none;
 	-webkit-app-region: no-drag;
     cursor: pointer;
+}
+
+.pageTitle{
+    float: left;
+    display: inline-block;
+    font-size: 24px;
+    margin-left: 10px;
 }
 
 .pageContent{
@@ -107,6 +119,13 @@ button{
     cursor: pointer;
 }
 
+input{
+    -webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+    cursor: pointer;
+}
+
 button:active{
     background-color: #34495e;
 }
@@ -122,10 +141,7 @@ button:active{
 }
 
 #settingsPageContent{
-    background-color: #fff;
-    display: inline-block;
-    width: 720px;
-    height: 300px;
+    padding: 20px;
 }
 
 .footer{
