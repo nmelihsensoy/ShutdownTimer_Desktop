@@ -1,6 +1,8 @@
 # ShutdownTimer_Desktop
 Cross platform, Modern Ui
 
+Note: I am using socket connection instead of ipc for main and renderer process communication
+
 ```
 git clone https://github.com/nmelihsensoy/ShutdownTimer_Desktop.git
 cd ShutdownTimer_Desktop
