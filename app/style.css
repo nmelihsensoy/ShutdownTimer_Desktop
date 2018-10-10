@@ -143,3 +143,27 @@ input, select, option{
     -webkit-app-region: no-drag;
     cursor: pointer;
 }
+
+.timerNumbers{
+    background-color: aquamarine;
+    padding: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#countDown{
+    text-align: center;
+    font-size: 60px;
+}
+
+#cancelButton{
+    position: absolute;
+    left: 30%;
+    margin-top: 30px;
+    width: 200px;
+}
+
+#mainPage button{
+    width: 45%;
+    margin-bottom: 15px;
+}

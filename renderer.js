@@ -32,6 +32,7 @@ socket.on('connect', function (data) {
         today.setHours(today.getHours() + hour);
         today.setMinutes(today.getMinutes() + minute);
         today.setSeconds(today.getSeconds() + second);
+
         return today;
     }
 
@@ -70,6 +71,7 @@ socket.on('connect', function (data) {
         document.getElementsByClassName("settingsButton").style.display = "none";
     }
 
+    var x;
     function openPage(pageName, countDownDate) {
     // Hide all elements with class="pageContent" by default
     var i, pageContent, tablinks;
@@ -94,11 +96,11 @@ socket.on('connect', function (data) {
         document.getElementById("webServerPort").value = store.get('web_server_port');
         
     }else if(pageName == "timerPage"){
-        ipcRenderer.send('resize', 500, 200);
+        ipcRenderer.send('resize', 500, 300);
         
         //Countdown method
         //https://www.w3schools.com/howto/howto_js_countdown.asp
-        var x = setInterval(function() {
+        x = setInterval(function() {
 
             // Get todays date and time
             var now = new Date().getTime();
@@ -113,8 +115,7 @@ socket.on('connect', function (data) {
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
             // Display the result in the element with id="demo"
-            document.getElementById("countDown").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
+            document.getElementById("countDown").innerHTML = "<span class=\"timerNumbers\">" + days +"</span>: " + "<span class=\"timerNumbers\">" + hours +"</span>: " + "<span class=\"timerNumbers\">" + minutes +"</span>: " + "<span class=\"timerNumbers\">" + seconds +"</span>";
         
             // If the count down is finished, write some text 
             if (distance < 0) {
@@ -125,6 +126,7 @@ socket.on('connect', function (data) {
         }, 1000);
     }else{
         ipcRenderer.send('resize', 500, 400);
+        x = null;
     }
 
     // Show the specific tab content
@@ -141,9 +143,10 @@ socket.on('connect', function (data) {
         exec('shutdown -h +60', function(error, stdout, stderr){ callback(stdout); });
     }
 
-    function shutdownCancel(callback){
+    function shutdownCancel(){
         clearInterval(x);
-        exec('shutdown -c', function(error, stdout, stderr){ callback(stdout); });
+        x = null;
+        //exec('shutdown -c', function(error, stdout, stderr){ callback(stdout); });
     }
 
     shutdown(function(output){

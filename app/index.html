@@ -16,9 +16,13 @@
         <span class="windowTitle">Shutdown Timer</span>
     </div>
     <div id="mainPage" class="pageContent">
-        <p id="text" class="text">sdads</p>
-        <button onclick="openPage('timerPage'); shutdownNow();">Shutdown Now</button>
+        <p id="text" class="text"></p>
         <button onclick="openPage('timerPage', returnDateAfterHours(1, 0, 0));">Shutdown +1 Hours</button>
+        <button onclick="openPage('timerPage', returnDateAfterHours(2, 0, 0));">Shutdown +2 Hours</button>
+        <button onclick="openPage('timerPage', returnDateAfterHours(4, 0, 0));">Shutdown +4 Hours</button>
+        <button onclick="openPage('timerPage', returnDateAfterHours(0, 30, 0));">Shutdown +30 Min</button>
+        <button onclick="openPage('timerPage', returnDateAfterHours(1, 0, 0));">Shutdown +30 Sec</button>
+        <button onclick="openPage('timerPage'); shutdownNow();">Shutdown Now</button>
         <span onclick="openPage('settingsPage');" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
             <i class="fa fa-circle fa-stack-2x icon-background"></i>
             <i class="fa fa-cog fa-stack-1x"></i>
@@ -26,7 +30,7 @@
     </div>
     <div id="timerPage" class="pageContent clearfix">
         <div id="countDown"></div>
-        <button onclick="openPage('mainPage'); shutdownCancel();">Cancel</button>
+        <button id="cancelButton" onclick="shutdownCancel();openPage('mainPage');">Cancel</button>
     </div>
     <div id="settingsPage" class="pageContent clearfix">
         <div class="pageTop clearfix">
