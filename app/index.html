@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="light_theme.css" id="theme_css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -17,14 +18,14 @@
     <div id="mainPage" class="pageContent">
         <p id="text" class="text">sdads</p>
         <button onclick="openPage('timerPage'); shutdownNow();">Shutdown Now</button>
-        <button onclick="openPage('timerPage'); shutdownOneHour();">Shutdown +1 Hours</button>
+        <button onclick="openPage('timerPage', returnDateAfterHours(1, 0, 0));">Shutdown +1 Hours</button>
         <span onclick="openPage('settingsPage');" class="tablink settingsButton fa-stack fa-2x" aria-hidden="true">
             <i class="fa fa-circle fa-stack-2x icon-background"></i>
             <i class="fa fa-cog fa-stack-1x"></i>
         </span>
     </div>
     <div id="timerPage" class="pageContent clearfix">
-        Shutdown Now/1 Hour Ago
+        <div id="countDown"></div>
         <button onclick="openPage('mainPage'); shutdownCancel();">Cancel</button>
     </div>
     <div id="settingsPage" class="pageContent clearfix">
@@ -34,7 +35,11 @@
         </div>
         <div id="settingsPageContent">
             Web Server: <input type="checkbox" id="webServerToggle" onclick="toggleWebServer()"><br>
-            Web Server Port: <input type="text" id="webServerPort" name="webServerPort" onchange="webServerPortListener(this.value)">
+            Web Server Port: <input type="text" id="webServerPort" name="webServerPort" onchange="webServerPortListener(this.value)"><br>
+            Theme: <select id="theme_selector" onchange="themeSelector(this.selectedIndex)">
+                <option value="light_theme">Light Theme</option>
+                <option value="dark_theme">Dark theme</option>
+            </select>
             <p>You must restart to apply these changes</p>
         </div>
     </div>

@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 
 const Store = require('electron-store');
 const store = new Store();
@@ -8,14 +8,11 @@ const store = new Store();
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-    const {ipcMain} = require('electron')
-    ipcMain.on('resize', function (e, x, y) { mainWindow.setSize(x, y); });
-
     function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 500, 
-    height: 600, 
+    height: 400, 
     transparent: true, 
     resizable: false, 
     useContentSize: true, 
@@ -31,6 +28,7 @@ var url = require('url');
 fs = require('fs');
 
 io.sockets.on('connection', function (socket) {
+  console.log('Socket Connected');
 	socket.on('subscribe', function (data) {
 		console.log('Subscribing to '+ data);
 	});
@@ -39,8 +37,6 @@ io.sockets.on('connection', function (socket) {
 		console.log("asdasd");
   });
 });
-
-console.log(store.get('web_server'));
 
 var web_server_port;
 if(store.has('web_server_port')){
@@ -68,7 +64,7 @@ if(store.get('web_server') == 'true'){
   });
 }
 
-
+  ipcMain.on('resize', function (e, x, y) { mainWindow.setSize(x, y); });
   // and load the index.html of the app.
   mainWindow.loadFile('app/index.html', {
     rendererSideName : "http"

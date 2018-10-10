@@ -9,7 +9,6 @@ html{
 body{
     font-family: 'Open Sans', sans-serif;
     overflow: hidden;
-    color: white;
     position: absolute;
     top: 0px;   
     left: 0px;
@@ -20,7 +19,6 @@ body{
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2c3e50;
     -webkit-app-region:drag;
 }
 
@@ -36,11 +34,9 @@ body{
     margin: 0;
     padding: 0;
     height: 50px;
-    background-color: #34495e;
 }
 
 .windowsButton{
-    color: #757575;
     font-size: 30px;
     float: right;
     margin-right: 10px;
@@ -53,31 +49,20 @@ body{
     cursor: pointer;
 }
 
-.windowsButton:hover{
-    color: #ef5350;
-}
-
-#minimizeWindow:hover{
-    color: #f1c40f !important;
-}
-
 .windowTitle{
     float: left;
     display: inline-block;
     line-height: 50px;
     font-size: 20px;
     margin-left: 10px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.68);
     letter-spacing: -1px;
 }
 
 .pageTop{
-    background-color: #ef5350;
     line-height: 40px;
 }
 
 .backPage{
-    color: #757575;
     font-size: 40px;
     float: left;
     margin-left: 10px;
@@ -107,11 +92,8 @@ body{
 }
 
 button{
-    background-color: #B0BEC5;
-    border:1px solid #757575;
     outline: none;
     padding: 20px;
-    color: #000;
     font-size: 18px;
     -webkit-user-select: none;
 	-webkit-user-drag: none;
@@ -119,15 +101,11 @@ button{
     cursor: pointer;
 }
 
-input{
+input, select, option{
     -webkit-user-select: none;
 	-webkit-user-drag: none;
 	-webkit-app-region: no-drag;
     cursor: pointer;
-}
-
-button:active{
-    background-color: #34495e;
 }
 
 #timerPage{
@@ -160,17 +138,8 @@ button:active{
     right: 0;
     margin-right: 10px;
     margin-bottom: 10px;
-    color: #757575;
     -webkit-user-select: none;
 	-webkit-user-drag: none;
     -webkit-app-region: no-drag;
     cursor: pointer;
-}
-
-.settingsButton:hover .fa.fa-circle{
-    color: #000;
-}
-
-.icon-background{
-    color: #B0BEC5;
 }
