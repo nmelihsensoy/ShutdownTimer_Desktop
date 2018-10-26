@@ -22,7 +22,7 @@ socket.on('connect', function (data) {
     socket.on('shutdown', function(data){
         //var paragraph = document.getElementById("text");
         //paragraph.textContent = data;
-        if(String(data.cancel == 'true')){
+        if(String(data.cancel) == 'true'){
             shutdownCancel();
             openPage('mainPage');
         }else{

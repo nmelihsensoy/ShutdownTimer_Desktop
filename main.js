@@ -55,7 +55,7 @@ if(store.get('web_server') == 'true'){
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(html);
       var q = url.parse(req.url, true).query;
-      var txt = q.hour + ",/" + q.min + ",/" + q.sec;
+      
       if(q.hour != null & q.min != null & q.min != null & q.cancel != null){
         var myObject = {
           hour: q.hour,
