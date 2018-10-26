@@ -43,7 +43,7 @@ if(store.has('web_server_port')){
   web_server_port = store.get('web_server_port');
 }else{
   web_server_port = '8080';
-  store.set('web_server_port', );
+  store.set('web_server_port', web_server_port);
 }
 
 if(store.get('web_server') == 'true'){
@@ -55,10 +55,23 @@ if(store.get('web_server') == 'true'){
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(html);
       var q = url.parse(req.url, true).query;
-      var txt = q.year + " " + q.month;
-      if(q.year != null & q.month != null){
-        io.sockets.emit('deneme', txt);
+      var txt = q.hour + ",/" + q.min + ",/" + q.sec;
+      if(q.hour != null & q.min != null & q.min != null & q.cancel != null){
+        var myObject = {
+          hour: q.hour,
+          min: q.min,
+          sec: q.sec,
+          cancel: q.cancel,
+        }
+        io.sockets.emit('shutdown', myObject);
+        //io.sockets.emit('shutdown', {hour: txt});
+      }else if(q.cancel != null){
+        var myObject = {
+          cancel: q.cancel,
+        }
+        io.sockets.emit('shutdown', myObject);
       }
+
       res.end();
     }).listen(web_server_port);
   });

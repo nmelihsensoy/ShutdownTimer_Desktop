@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        body a{
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #eee;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        body a:hover{
+            background-color: #666;
+        }
+    </style>
 </head>
 <body>
-    WEB SERVER
+    <a href="?hour=1&min=0&sec=0&cancel=no">+1 Hours</a>
+    <a href="?hour=2&min=0&sec=0&cancel=no">+2 Hours</a>
+    <a href="?hour=4&min=0&sec=0&cancel=no">+4 Hours</a>
+    <a href="?hour=0&min=30&sec=0&cancel=no">+30 Min</a>
+    <a href="?hour=0&min=0&sec=0&cancel=no">Shutdown Now</a>
+    <a href="?cancel=true">Cancel</a>
 </body>
 </html>

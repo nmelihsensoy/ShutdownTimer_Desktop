@@ -19,10 +19,15 @@ document.getElementById('theme_css').href = store.get('appTheme') + '.css';
 socket.on('connect', function (data) {
     console.log("connected");
 
-    socket.on('deneme', function(data){
-        var paragraph = document.getElementById("text");
-        paragraph.textContent = data;
-        
+    socket.on('shutdown', function(data){
+        //var paragraph = document.getElementById("text");
+        //paragraph.textContent = data;
+        if(String(data.cancel == 'true')){
+            shutdownCancel();
+            openPage('mainPage');
+        }else{
+            openPage('timerPage', returnDateAfterHours(parseInt(data.hour), parseInt(data.min), parseInt(data.sec)));
+        }
     });
 
   });
